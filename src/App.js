@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, {useState} from "react";
+const App = ({}) => {
+  const [count, setCount] = useState(0);
+  const changeCount = (msg) => {
+    setCount(msg);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{count}</h1>
+      <Counter value={count} changeCount={changeCount}/>
+      <Number value={count} changeCount={changeCount}/>
     </div>
   );
 }
 
+function Counter(props) {
+  const { value, changeCount } = props;
+  const reCount = (msg) => {
+      changeCount(msg);
+  };
+  return (
+      <div>counter component：
+          <h1>{value}</h1>
+          <button onClick={() => reCount(value + 1)}>Increment</button>
+      </div>
+  );
+}
+
+const Number = (props) => {
+  const { value, changeCount } = props;
+  const reCount = (msg) => {
+      changeCount(msg);
+  };
+  return (
+      <div>number component：
+          <h1>{value}</h1>
+          <button onClick={() => reCount(value + 1)}>Increment</button>
+      </div>
+  );
+};
 export default App;
